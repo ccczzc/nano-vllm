@@ -51,6 +51,8 @@ class Qwen3Attention(nn.Module):
             hidden_size,
             bias=False,
         )
+        if rope_scaling is not None:
+            rope_scaling = tuple(sorted(rope_scaling.items()))
         self.rotary_emb = get_rope(
             self.head_dim,
             rotary_dim=self.head_dim,
